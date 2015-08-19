@@ -36,4 +36,36 @@ RSpec.describe AddressBook do
       expect(new_entry.email).to eq 'augusta.king@lovelace.com'
     end
   end
+
+  context "#remove entry" do
+    it "removes one entry from the address book" do
+      book = AddressBook.new
+
+      name = 'Ada Lovelace'
+      phone = '010.012.1815'
+      email = 'augusta.king@lovelace.com'
+      #add the entry first so we can test removing it
+      book.add_entry(name, phone, email )
+      #expect(book.entries.size).to eq 1 - this passed so commented out
+      book.remove_entry(name, phone, email)
+      expect(book.entries.size).to eq 0
+    end
+    it "tries to remove a non-existent entry" do
+      book = AddressBook.new
+
+      name = 'Ada Lovelace'
+      phone = '010.012.1815'
+      email = 'augusta.king@lovelace.com'
+      #adds the first entry
+      book.add_entry(name, phone, email )
+
+      name = 'Ketan Shukla'
+      phone = '010.012.1815'
+      email = 'augusta.king@lovelace.com'
+      #tries to remove an entry that wasn't added (name is different)
+      book.remove_entry(name, phone, email)
+      #as expected, the number of records is still 1
+      expect(book.entries.size).to eq 1
+    end
+  end
 end
