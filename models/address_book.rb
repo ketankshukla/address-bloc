@@ -49,4 +49,18 @@ class AddressBook
 
     return nil
   end
+
+  #assignment 21 - iterative search
+  def iterative_search(name)
+    #iterative search gos through each and every entry
+    #from the start of the file to the end of the file until
+    #it hits the search term
+    @entries.each do |entryName|
+      if name == entryName.name
+        return entryName
+      end
+    end
+    return nil
+  end
+
 end
